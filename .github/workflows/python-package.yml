@@ -22,12 +22,12 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     
-    - name: Install dependencies and package
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # This forces a fresh install of your package from the repository's code
-        pip install --force-reinstall .
-        pip install flake8 pytest
+        pip install requests pytest
+        # The line below is the "Magic Fix" 
+        pip install -e .
 
     - name: Lint with flake8
       run: |
