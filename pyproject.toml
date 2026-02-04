@@ -23,3 +23,11 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://promptsgenerator.ai"
 "Bug Tracker" = "https://promptsgenerator.ai"
+
+# --- THE FIX STARTS HERE ---
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+# --- THE FIX ENDS HERE ---
