@@ -35,7 +35,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         
     - name: Test with pytest
-      # Adding 'src' to the path manually for the test runner
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)/src
-        pytest
+        # Force the python path to the src directory
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/src"
+        python -m pytest tests/
