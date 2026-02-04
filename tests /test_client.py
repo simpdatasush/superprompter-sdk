@@ -1,9 +1,18 @@
 import pytest
-from superprompter import SuperPrompter
+
+def test_import():
+    # This checks if the package is actually installed in the environment
+    try:
+        from superprompter import SuperPrompter
+        assert True
+    except ImportError:
+        pytest.fail("SDK not found. Check if 'pip install -e .' ran and __init__.py exists.")
 
 def test_sdk_initialization():
-    # Test that parameters are assigned to the right headers
-    assert callable(SuperPrompter)
+    from superprompter import SuperPrompter
+    sdk = SuperPrompter(api_key="test_key")
+    assert sdk.api_key == "test_key"
+    assert sdk.base_url == "https://promptsgenerator.ai"
 
 
 #import pytest
