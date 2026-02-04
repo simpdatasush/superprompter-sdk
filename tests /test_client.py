@@ -6,24 +6,18 @@ import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
 def test_import_superprompter():
+    """Verify that the package is installable and the class is importable."""
     try:
         from superprompter import SuperPrompter
-        sdk = SuperPrompter(api_key="test")
-        assert sdk.api_key == "test"
+        sdk = SuperPrompter(api_key="test_key")
+        assert sdk.api_key == "test_key"
+        assert "X-API-KEY" in sdk.headers
     except ImportError as e:
         pytest.fail(f"Could not import SuperPrompter. Error: {e}")
 
-#import pytest
-#from promptsapi import generate_prompt, reverse_prompt
-
-#def test_generate_prompt_exists():
-#   """
-#   Test that the generate_prompt function can be imported and exists.
-#    """
-#    assert callable(generate_prompt)
-
-#def test_reverse_prompt_exists():
-#    """
-#    Test that the reverse_prompt function can be imported and exists.
-#    """
-#    assert callable(reverse_prompt)
+def test_search_news_method_exists():
+    """Verify that the search_news method is available on the class."""
+    from superprompter import SuperPrompter
+    sdk = SuperPrompter(api_key="test")
+    assert hasattr(sdk, 'search_news')
+    assert callable(sdk.search_news)
