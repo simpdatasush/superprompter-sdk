@@ -20,7 +20,6 @@ class SuperPrompter:
         params = {"q": query, "limit": limit}
         
         try:
-            # Added timeout to prevent hanging, following your latest logic [cite: 10, 63]
             response = requests.get(
                 endpoint, 
                 headers=self.headers, 
@@ -31,5 +30,4 @@ class SuperPrompter:
             return response.json()
             
         except requests.exceptions.RequestException as e:
-            # Handles Timeouts, HTTP errors, and Connection issues [cite: 52, 54, 57]
             return {"error": str(e)}
