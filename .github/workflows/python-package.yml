@@ -25,8 +25,9 @@ jobs:
     - name: Install dependencies and package
       run: |
         python -m pip install --upgrade pip
-        # Matches your working lib's strategy 
+        # Force a fresh install of the package from the current code 
         pip install --force-reinstall .
+        # Ensure testing and linting tools are present [cite: 176]
         pip install flake8 pytest requests
 
     - name: Test with pytest
