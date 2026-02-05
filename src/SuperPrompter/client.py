@@ -27,8 +27,8 @@ class SuperPrompter:
                 params=params, 
                 timeout=10
             )
-            response.raise_for_status() [cite: 50, 93]
-            return response.json() [cite: 51, 94]
+            response.raise_for_status()
+            return response.json()
             
         except requests.exceptions.RequestException as e:
             # Handles Timeouts, HTTP errors, and Connection issues [cite: 52, 54, 57]
