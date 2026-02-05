@@ -12,12 +12,9 @@ class SuperPrompter:
     def search_news(self, query, limit=10):
         endpoint = f"{self.base_url}/api/v1/news/search"
         params = {"q": query, "limit": limit}
-        
         try:
-            # Added timeout=10 to prevent hanging
             response = requests.get(endpoint, headers=self.headers, params=params, timeout=10)
             response.raise_for_status() 
             return response.json()
         except requests.exceptions.RequestException as e:
-            # Catching RequestException covers Connection, Timeout, and HTTP errors
             return {"error": str(e)}
